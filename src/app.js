@@ -1,8 +1,8 @@
 import 'bootstrap';
 
-export const CONTRACT_ADDRESS="TLC58UqqrLvQCJ46YzpFZnUM4Sp21VJUFx";
+export const CONTRACT_ADDRESS="0xcb61529a79f6c42f10fba04a54f30edd7ab7de18";
 
-export const DEFAULT_REFERRER_ADDRESS="TVWV3mq72wDrGs39vu5RZisXLNZyUYzqdi";
+export const DEFAULT_REFERRER_ADDRESS="0xb47b7ee03096d1dd8f69ef60bd8febff71ec1364";
 
 
 document.getElementById('referral').value=DEFAULT_REFERRER_ADDRESS;
@@ -116,7 +116,7 @@ async function readEvents(){
                 res= res + " <td>" + index + "</td>";
                 res= res + " <td>" + event['timestamp'] + "</td>";
                 res= res + " <td>" + event['result']['user'] + "</td>";
-                res= res + " <td>" + event['result']['value']/1000000 + " TRX</td>";
+                res= res + " <td>" + event['result']['value']/1000000 + " MATIC</td>";
                 res= res + " </tr>";
                 index++;
             })

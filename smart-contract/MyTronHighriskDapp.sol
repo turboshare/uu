@@ -1,7 +1,7 @@
 pragma solidity 0.5.10;
 
 
-contract MyTronHighriskDDAPP{
+contract BankofMatic{
 
   uint public totalInvestors;
   uint public totalInvested;
@@ -124,7 +124,7 @@ contract MyTronHighriskDDAPP{
   }
 
   modifier minimumInvest(uint val){
-    require(val>100000000,"Minimum invest is 100 TRX");
+    require(val>100000000,"Minimum invest is 10 MATIC");
     _;
   }
 

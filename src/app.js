@@ -62,7 +62,7 @@ async function withdraw() {
 
 
 function walletInstalled(){
-    if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+    if (window.web3 && window.web3.defaultAddress.base58) {
         return true;
     } else {
         return false;
@@ -73,7 +73,7 @@ function walletInstalled(){
 
 async function getContract(){
     if(walletInstalled()){
-        return window.tronWeb.contract().at(CONTRACT_ADDRESS);
+        return window.web3.contract().at(CONTRACT_ADDRESS);
     }
 }
 
@@ -83,21 +83,21 @@ async function readInfo(){
 
     if(contract){
         contract.totalInvested().call().then(function(data){
-            let totalInvested=window.tronWeb.toDecimal(data["_hex"]);
+            let totalInvested=window.web3.toDecimal(data["_hex"]);
             document.getElementById('totalInvested').innerHTML=totalInvested / 1000000;
         })
         contract.totalRefRewards().call().then(function(data){
-            let totalRefRewards=window.tronWeb.toDecimal(data["_hex"]);
+            let totalRefRewards=window.web3.toDecimal(data["_hex"]);
             document.getElementById('totalRefRewards').innerHTML=totalRefRewards / 1000000;
         })
     
-        contract.investors(window.tronWeb.defaultAddress.base58).call().then(function(data){
-            document.getElementById('invested').innerHTML=window.tronWeb.toDecimal(data['invested']["_hex"]) / 1000000;
-            document.getElementById('refRewards').innerHTML=window.tronWeb.toDecimal(data['totalRef']["_hex"]) / 1000000;
+        contract.investors(window.web3.defaultAddress.base58).call().then(function(data){
+            document.getElementById('invested').innerHTML=window.web3.toDecimal(data['invested']["_hex"]) / 1000000;
+            document.getElementById('refRewards').innerHTML=window.web3.toDecimal(data['totalRef']["_hex"]) / 1000000;
         })
     
-        contract.withdrawable(window.tronWeb.defaultAddress.base58).call().then(function(data){
-            document.getElementById('withdrawable').innerHTML=window.tronWeb.toDecimal(data['amount']["_hex"]) / 1000000;
+        contract.withdrawable(window.web3.defaultAddress.base58).call().then(function(data){
+            document.getElementById('withdrawable').innerHTML=window.web3.toDecimal(data['amount']["_hex"]) / 1000000;
         })
     }
 
@@ -107,7 +107,7 @@ async function readEvents(){
     let contract=await getContract();
 
     if(contract){
-        tronWeb.getEventResult(CONTRACT_ADDRESS, {size:10})
+        web3.getEventResult(CONTRACT_ADDRESS, {size:10})
         .then(function(data){
             let res='';
             let index=1;
@@ -145,7 +145,7 @@ setInterval(function(){
 
 // setTimeout(function(){
 
-//     if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+//     if (window.web3 && window.web3.defaultAddress.base58) {
 //         console.log('Wallet installed')
 //     } else {
 //         console.log('Wallet not installed')
